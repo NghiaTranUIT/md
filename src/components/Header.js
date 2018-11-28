@@ -4,7 +4,8 @@ import {
   NavbarDivider,
   NavbarGroup,
   NavbarHeading,
-  Classes
+  Classes,
+  EditableText
 } from "@blueprintjs/core";
 import PropTypes from "prop-types";
 
@@ -14,10 +15,12 @@ const Header = ({ fileName, onFileNameChange }) => {
       <NavbarGroup align={Classes.ALIGN_LEFT}>
         <NavbarHeading>md</NavbarHeading>
         <NavbarDivider />
-        <input
-          className={Classes.INPUT}
-          value={fileName}
-          onChange={e => onFileNameChange(e.target.value)}
+        <EditableText
+          selectAllOnFocus={true}
+          defaultValue={fileName}
+          onChange={onFileNameChange}
+          maxLength={255}
+          placeholder="Click to name the file"
         />
       </NavbarGroup>
     </Navbar>

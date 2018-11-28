@@ -33,7 +33,7 @@ const mapDispatchToProps = dispatch => ({
 MenuBar.propTypes = {
   id: PropTypes.string.isRequired,
   fileName: PropTypes.string.isRequired,
-  onFileNameChange: PropTypes.func.isRequired,
+  onFileNameChange: PropTypes.func.isRequired
 };
 
 export default connect(
