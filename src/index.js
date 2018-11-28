@@ -4,7 +4,7 @@ import App from "./components/App";
 import "normalize.css/normalize.css";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "@blueprintjs/icons/lib/css/blueprint-icons.css";
-import { createStore } from "redux/es/redux";
+import { createStore } from "redux";
 import rootReducer from "./reducers";
 import { Provider } from "react-redux";
 

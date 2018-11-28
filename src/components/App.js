@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SimpleMDEEditor from "react-simplemde-editor";
 import "simplemde/dist/simplemde.min.css";
-import Header from "./Header";
+import MenuBar from "../containers/MenuBar";
 
 class App extends Component {
   handleChange = value => {
@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <Header />
+        <MenuBar />
         <div style={{ "padding-top": 50 }}>
           <SimpleMDEEditor
             onChange={this.handleChange}
