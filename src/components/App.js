@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SimpleMDEEditor from "react-simplemde-editor";
 import "simplemde/dist/simplemde.min.css";
+import Header from "./Header";
 
 class App extends Component {
   handleChange = value => {
@@ -9,14 +10,17 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <SimpleMDEEditor
-          onChange={this.handleChange}
-          options={{
-            autofocus: true
-          }}
-        />
-      </div>
+      <>
+        <Header />
+        <div style={{ "padding-top": 50 }}>
+          <SimpleMDEEditor
+            onChange={this.handleChange}
+            options={{
+              autofocus: true
+            }}
+          />
+        </div>
+      </>
     );
   }
 }
