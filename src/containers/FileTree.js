@@ -1,9 +1,46 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Tree, TreeNode } from "@blueprintjs/core";
+import connect from "react-redux/es/connect/connect";
 
 class FileTree extends Component {
   render() {
-    return <div>This is the file tree</div>;
+    const { files } = this.props;
+    return (
+      <>
+        <Tree
+          contents={files.map((f, i) => {
+            return (
+              <TreeNode
+                key={f.id}
+                depth={0}
+                path={i}
+                id={f.id}
+                label={f.name}
+                isExpanded={true}
+              />
+            );
+          })}
+        />
+      </>
+    );
   }
 }
 
-export default FileTree;
+const mapStateToProps = state => ({
+  files: Object.keys(state.editor.files).map(id => ({
+    id,
+    name: state.editor.files[id].name
+  }))
+});
+
+FileTree.propTypes = {
+  files: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired
+    })
+  )
+};
+
+export default connect(mapStateToProps)(FileTree);
