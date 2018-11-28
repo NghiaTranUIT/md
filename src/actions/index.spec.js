@@ -8,3 +8,12 @@ describe("updateActiveFileName", () => {
     });
   });
 });
+
+describe("updateFileContent", () => {
+  it("should create UPDATE_FILE_CONTENT action", () => {
+    expect(actions.updateFileContent("abc")).toEqual({
+      type: "UPDATE_FILE_CONTENT",
+      payload: "abc"
+    });
+  });
+});

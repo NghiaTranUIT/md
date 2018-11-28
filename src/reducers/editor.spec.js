@@ -1,5 +1,5 @@
 import editor from "./editor";
-import { updateActiveFileName } from "../actions";
+import { updateActiveFileName, updateFileContent } from "../actions";
 
 describe("editor reducer", () => {
   it("should handle initial state", () => {
@@ -14,6 +14,12 @@ describe("editor reducer", () => {
       editor({ fileName: "some name" }, updateActiveFileName("new name"))
     ).toEqual({
       fileName: "new name"
+    });
+  });
+
+  it("should handle UPDATE FILE CONTENT action", () => {
+    expect(editor({ content: "" }, updateFileContent("new content"))).toEqual({
+      content: "new content"
     });
   });
 });
