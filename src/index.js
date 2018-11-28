@@ -20,7 +20,7 @@ const store = createStore(
 store.subscribe(
   throttle(() => {
     saveState(store.getState());
-  }, 1000)
+  }, 5000)
 );
 
 ReactDOM.render(

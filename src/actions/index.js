@@ -1,9 +1,17 @@
-export const updateActiveFileName = name => ({
-  type: "UPDATE_ACTIVE_FILE_NAME",
-  payload: name
+export const updateFile = (id, name, content) => ({
+  type: "UPDATE_FILE",
+  payload: {
+    id,
+    name,
+    content
+  }
 });
 
-export const updateFileContent = content => ({
-  type: "UPDATE_FILE_CONTENT",
-  payload: content
+export const createNewFile = (id, name, content) => ({
+  type: "CREATE_NEW_FILE",
+  payload: {
+    id,
+    name,
+    content
+  }
 });

@@ -1,13 +1,19 @@
 import { connect } from "react-redux";
 import Header from "../components/Header";
-import { updateActiveFileName } from "../actions";
+import { updateFile } from "../actions";
 
-const mapStateToProps = state => ({
-  fileName: state.editor.fileName
-});
+const mapStateToProps = state => {
+  const activeFileId = state.editor.activeFileId;
+  const activeFile = state.editor.files.find(f => f.id === activeFileId);
+
+  return {
+    id: activeFileId,
+    fileName: activeFile ? activeFile.name : ""
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  onFileNameChange: text => dispatch(updateActiveFileName(text))
+  onFileNameChange: (id, name) => dispatch(updateFile(id, name))
 });
 
 export default connect(

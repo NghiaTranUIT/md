@@ -5,6 +5,7 @@
   "dependencies": {
     "@blueprintjs/core": "^3.9.0",
     "@blueprintjs/icons": "^3.3.0",
+    "lodash": "latest",
     "prettier": "^1.15.2",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
@@ -13,7 +14,7 @@
     "react-scripts": "2.1.1",
     "react-simplemde-editor": "^3.6.22",
     "redux": "^4.0.1",
-    "lodash": "latest"
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
