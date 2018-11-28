@@ -5,7 +5,8 @@
   "dependencies": {
     "@blueprintjs/core": "^3.9.0",
     "@blueprintjs/icons": "^3.3.0",
-    "lodash": "latest",
+    "lodash": "^4.17.11",
+    "lodash-es": "^4.17.11",
     "prettier": "^1.15.2",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
