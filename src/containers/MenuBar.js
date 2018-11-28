@@ -2,13 +2,27 @@ import { connect } from "react-redux";
 import Header from "../components/Header";
 import { updateFile } from "../actions";
 
+import React, { Component } from "react";
+
+class MenuBar extends Component {
+  render() {
+    const { id, fileName, onFileNameChange } = this.props;
+    return (
+      <Header
+        onFileNameChange={text => onFileNameChange(id, text)}
+        fileName={fileName}
+      />
+    );
+  }
+}
+
 const mapStateToProps = state => {
   const activeFileId = state.editor.activeFileId;
   const activeFile = state.editor.files.find(f => f.id === activeFileId);
 
   return {
-    id: activeFileId,
-    fileName: activeFile ? activeFile.name : ""
+    fileName: activeFile ? activeFile.name : "",
+    id: activeFileId
   };
 };
 
@@ -19,4 +33,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header);
+)(MenuBar);

@@ -15,3 +15,7 @@ export const createNewFile = (id, name, content) => ({
     content
   }
 });
+
+export const wipeAll = () => ({
+  type: "WIPE_ALL"
+});

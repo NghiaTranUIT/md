@@ -1,5 +1,5 @@
-import editor from "./editor";
-import { createNewFile, updateFile, updateFileContent } from "../actions";
+import editor, { defaultState } from "./editor";
+import { createNewFile, updateFile, wipeAll } from "../actions";
 
 const files = [
   {
@@ -74,5 +74,9 @@ describe("editor reducer", () => {
     ).toEqual(files);
 
     expect(editor({ files }, updateFile("1", undefined)).files).toEqual(files);
+  });
+
+  it("should handle WIPE_ALL action", () => {
+    expect(editor({ files }, wipeAll())).toEqual(defaultState);
   });
 });

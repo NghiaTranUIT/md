@@ -8,7 +8,7 @@ import {
 } from "@blueprintjs/core";
 import PropTypes from "prop-types";
 
-const Header = ({ id, fileName, onFileNameChange }) => {
+const Header = ({ fileName, onFileNameChange }) => {
   return (
     <Navbar fixedToTop={true}>
       <NavbarGroup align={Classes.ALIGN_LEFT}>
@@ -17,7 +17,7 @@ const Header = ({ id, fileName, onFileNameChange }) => {
         <input
           className={Classes.INPUT}
           value={fileName}
-          onChange={e => onFileNameChange(id, e.target.value)}
+          onChange={e => onFileNameChange(e.target.value)}
         />
       </NavbarGroup>
     </Navbar>
@@ -25,7 +25,6 @@ const Header = ({ id, fileName, onFileNameChange }) => {
 };
 
 Header.propTypes = {
-  id: PropTypes.string.isRequired,
   fileName: PropTypes.string.isRequired,
   onFileNameChange: PropTypes.func.isRequired
 };

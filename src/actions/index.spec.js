@@ -21,4 +21,9 @@ describe("editor actions", () => {
       }
     });
   });
+  it("wipeAll should create WIPE_ALL action", () => {
+    expect(actions.wipeAll()).toEqual({
+      type: "WIPE_ALL"
+    });
+  });
 });

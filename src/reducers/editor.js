@@ -1,4 +1,4 @@
-const defaultState = {
+export const defaultState = {
   activeFileId: null,
   files: []
 };
@@ -27,6 +27,8 @@ const editor = (state = defaultState, action) => {
       newFiles[idx].name = name || newFiles[idx].name;
       newFiles[idx].content = content || newFiles[idx].content;
       return { ...state, files: newFiles };
+    case "WIPE_ALL":
+      return defaultState;
     default:
       return state;
   }

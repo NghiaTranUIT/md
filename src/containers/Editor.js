@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import * as actions from "../actions/index";
 import SimpleMDEEditor from "react-simplemde-editor";
 import * as PropTypes from "prop-types";
 const uuidv1 = require("uuid/v1");
@@ -8,8 +8,9 @@ const uuidv1 = require("uuid/v1");
 class Editor extends Component {
   componentDidMount() {
     const { id, createNewFile } = this.props;
-    if (id === undefined) {
-      createNewFile(uuidv1(), "Untitled.md", "# Hello World");
+    if (id == null) {
+      const id = uuidv1();
+      createNewFile(id, "Untitled.md", "# Hello World");
     }
   }
 
@@ -18,7 +19,9 @@ class Editor extends Component {
     return (
       <div style={{ paddingTop: 50 }}>
         <SimpleMDEEditor
-          onChange={text => onContentChange(id, text)}
+          onChange={text => {
+            onContentChange(id, text);
+          }}
           value={content}
           options={{
             spellChecker: false,
@@ -42,12 +45,14 @@ const mapStateToProps = state => {
   const activeFile = state.editor.files.find(f => f.id === activeFileId);
   const content = activeFile ? activeFile.content : "";
   return {
+    id: activeFileId,
     content
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  onContentChange: (id, content) => dispatch(actions.updateFile(id, content)),
+  onContentChange: (id, content) =>
+    dispatch(actions.updateFile(id, undefined, content)),
   createNewFile: (id, name, content) => {
     dispatch(actions.createNewFile(id, name, content));
   }
