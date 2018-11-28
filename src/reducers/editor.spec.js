@@ -1,31 +1,28 @@
 import editor, { defaultState } from "./editor";
 import { createNewFile, updateFile, wipeAll } from "../actions";
 
-const files = [
-  {
-    id: "1",
+const files = {
+  "1": {
     name: "1.md",
     content: "a"
   },
 
-  {
-    id: "2",
+  "2": {
     name: "2.md",
     content: "b"
   },
 
-  {
-    id: "3",
+  "3": {
     name: "3.md",
     content: "c"
   }
-];
+};
 
 describe("editor reducer", () => {
   it("should handle initial state", () => {
     expect(editor(undefined, {})).toEqual({
       activeFileId: null,
-      files: []
+      files: {}
     });
   });
 
@@ -34,49 +31,63 @@ describe("editor reducer", () => {
     const name = "new file.md";
     const content = "new content";
     const newFile = {
-      id,
       name,
       content
     };
     const state = editor({ files }, createNewFile(id, name, content));
 
-    expect(state.files).toEqual([...files, newFile]);
-    expect(state.activeFileId).toEqual(id);
+    expect(state).toEqual({
+      activeFileId: id,
+      files: { ...files, [`${id}`]: newFile }
+    });
   });
 
   it("should handle UPDATE_FILE action", () => {
-    const foundIdx = files.findIndex(f => f.id === "1");
     const updatedFile = {
-      ...files[foundIdx],
       name: "new name",
       content: "new content"
     };
 
-    const expectedFiles = ([...files][foundIdx] = updatedFile);
+    const expectedFiles = { ...files, "1": updatedFile };
 
-    expect(
-      editor({ files }, updateFile("1", "new name", "new content")).files
-    ).toContainEqual(expectedFiles);
-  });
+    const state = { activeFileId: "a", files };
+    const expected_state = {
+      ...state,
+      files: { ...expectedFiles }
+    };
 
-  it("should handle UPDATE_FILE action when id is invalid", () => {
-    expect(
-      editor({ files }, updateFile("non existing id", "new name")).files
-    ).toEqual(files);
-    expect(editor({ files }, updateFile(undefined, "new name")).files).toEqual(
-      files
+    expect(editor(state, updateFile("1", "new name", "new content"))).toEqual(
+      expected_state
     );
   });
 
-  it("should handle UPDATE_FILE action when name is invalid", () => {
-    expect(
-      editor({ files }, updateFile("non existing id", undefined)).files
-    ).toEqual(files);
+  it("should handle UPDATE_FILE action when id is invalid", () => {
+    const state = { activeFileId: null, files };
+    expect(editor(state, updateFile("non existing id", "new name"))).toEqual({
+      ...state,
+      files
+    });
 
-    expect(editor({ files }, updateFile("1", undefined)).files).toEqual(files);
+    expect(editor(state, updateFile(undefined, "new name"))).toEqual({
+      ...state,
+      files
+    });
+  });
+
+  it("should handle UPDATE_FILE action when name is invalid", () => {
+    const state = { files };
+    expect(editor(state, updateFile("non existing id", undefined))).toEqual({
+      ...state
+    });
+
+    expect(editor(state, updateFile("1", undefined))).toEqual({
+      ...state
+    });
   });
 
   it("should handle WIPE_ALL action", () => {
-    expect(editor({ files }, wipeAll())).toEqual(defaultState);
+    expect(editor({ activeFileId: "asd", files }, wipeAll())).toEqual(
+      defaultState
+    );
   });
 });

@@ -1,6 +1,6 @@
 export const defaultState = {
   activeFileId: null,
-  files: []
+  files: {}
 };
 
 const editor = (state = defaultState, action) => {
@@ -9,24 +9,29 @@ const editor = (state = defaultState, action) => {
       return {
         ...state,
         activeFileId: action.payload.id,
-        files: [
+        files: {
           ...state.files,
-          {
-            id: action.payload.id,
+          [`${action.payload.id}`]: {
             name: action.payload.name,
             content: action.payload.content
           }
-        ]
+        }
       };
     case "UPDATE_FILE":
       const { id, name, content } = action.payload;
-      const idx = state.files.findIndex(f => f.id === id);
-      if (idx === -1) return state;
+      const file = state.files[id];
+      if (file == null) return state;
 
-      const newFiles = [...state.files];
-      newFiles[idx].name = name || newFiles[idx].name;
-      newFiles[idx].content = content || newFiles[idx].content;
-      return { ...state, files: newFiles };
+      return {
+        ...state,
+        files: {
+          ...state.files,
+          [`${id}`]: {
+            name: name || file.name,
+            content: content || file.content
+          }
+        }
+      };
     case "WIPE_ALL":
       return defaultState;
     default:

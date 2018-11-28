@@ -42,7 +42,7 @@ Editor.propTypes = {
 
 const mapStateToProps = state => {
   const activeFileId = state.editor.activeFileId;
-  const activeFile = state.editor.files.find(f => f.id === activeFileId);
+  const activeFile = state.editor.files[activeFileId];
   const content = activeFile ? activeFile.content : "";
   return {
     id: activeFileId,

@@ -1,18 +1,21 @@
 import { createStore } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-
+import localForage from "localforage";
 import rootReducer from "./reducers";
+
+localForage.config({
+  storeName: "md"
+});
 
 const persistConfig = {
   key: "root",
-  storage
+  storage: localForage
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export default () => {
   let store = createStore(persistedReducer);
-  let persistor = persistStore(store);
-  return { store, persistor };
+  let persister = persistStore(store);
+  return { store, persister };
 };

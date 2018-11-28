@@ -18,7 +18,7 @@ class MenuBar extends Component {
 
 const mapStateToProps = state => {
   const activeFileId = state.editor.activeFileId;
-  const activeFile = state.editor.files.find(f => f.id === activeFileId);
+  const activeFile = state.editor.files[activeFileId];
 
   return {
     fileName: activeFile ? activeFile.name : "",
@@ -33,7 +33,7 @@ const mapDispatchToProps = dispatch => ({
 MenuBar.propTypes = {
   id: PropTypes.string.isRequired,
   fileName: PropTypes.string.isRequired,
-  onFileNameChange: PropTypes.func.isRequired,
+  onFileNameChange: PropTypes.func.isRequired
 };
 
 export default connect(
