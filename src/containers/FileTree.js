@@ -10,16 +10,7 @@ class FileTree extends Component {
       <>
         <Tree
           contents={files.map((f, i) => {
-            return (
-              <TreeNode
-                key={f.id}
-                depth={0}
-                path={i}
-                id={f.id}
-                label={f.name}
-                isExpanded={true}
-              />
-            );
+            return <TreeNode id={f.id} label={f.name} hasCaret={true} />;
           })}
         />
       </>
