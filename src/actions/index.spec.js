@@ -21,6 +21,14 @@ describe("editor actions", () => {
       }
     });
   });
+  it("selectFile should create SELECT_FILE action", () => {
+    expect(actions.selectFile("1")).toEqual({
+      type: "SELECT_FILE",
+      payload: {
+        id: "1"
+      }
+    });
+  });
   it("wipeAll should create WIPE_ALL action", () => {
     expect(actions.wipeAll()).toEqual({
       type: "WIPE_ALL"

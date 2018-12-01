@@ -15,9 +15,13 @@ class Editor extends Component {
   }
 
   render() {
+    console.log("RENDER");
     const { id, content, onContentChange } = this.props;
+    console.log(id);
+    console.log(content);
     return (
       <div style={{ paddingTop: 50 }}>
+        {content}
         <SimpleMDEEditor
           onChange={text => {
             onContentChange(id, text);

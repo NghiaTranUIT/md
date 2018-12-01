@@ -1,5 +1,5 @@
 import editor, { defaultState } from "./editor";
-import { createNewFile, updateFile, wipeAll } from "../actions";
+import { createNewFile, selectFile, updateFile, wipeAll } from "../actions";
 
 const files = {
   "1": {
@@ -82,6 +82,18 @@ describe("editor reducer", () => {
 
     expect(editor(state, updateFile("1", undefined))).toEqual({
       ...state
+    });
+  });
+
+  it("should handle SELECT_FILE action", () => {
+    const state = {
+      activeFileId: undefined,
+      files: files
+    };
+
+    expect(editor(state, selectFile("3"))).toEqual({
+      ...state,
+      activeFileId: "3"
     });
   });
 

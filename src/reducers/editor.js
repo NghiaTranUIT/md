@@ -32,6 +32,13 @@ const editor = (state = defaultState, action) => {
           }
         }
       };
+
+    case "SELECT_FILE":
+      return {
+        ...state,
+        activeFileId: action.payload.id
+      };
+
     case "WIPE_ALL":
       return defaultState;
     default:

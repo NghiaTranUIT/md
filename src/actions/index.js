@@ -16,6 +16,13 @@ export const createNewFile = (id, name, content) => ({
   }
 });
 
+export const selectFile = id => ({
+  type: "SELECT_FILE",
+  payload: {
+    id
+  }
+});
+
 export const wipeAll = () => ({
   type: "WIPE_ALL"
 });
