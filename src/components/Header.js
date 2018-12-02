@@ -16,7 +16,7 @@ import {
 import PropTypes from "prop-types";
 import { IconNames } from "@blueprintjs/icons";
 
-const Header = ({ fileName, onFileNameChange }) => {
+const Header = ({ fileName, onFileNameChange, onCreateNewFile }) => {
   return (
     <Navbar fixedToTop={true}>
       <NavbarGroup align={Classes.ALIGN_LEFT}>
@@ -37,6 +37,9 @@ const Header = ({ fileName, onFileNameChange }) => {
               <MenuItem
                 text={"New File"}
                 icon={<Icon icon={IconNames.DOCUMENT} />}
+                onClick={() => {
+                  onCreateNewFile();
+                }}
               />
             </Menu>
           }
@@ -50,7 +53,8 @@ const Header = ({ fileName, onFileNameChange }) => {
 
 Header.propTypes = {
   fileName: PropTypes.string.isRequired,
-  onFileNameChange: PropTypes.func.isRequired
+  onFileNameChange: PropTypes.func.isRequired,
+  onCreateNewFile: PropTypes.func.isRequired
 };
 
 export default Header;
