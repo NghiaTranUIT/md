@@ -5,9 +5,16 @@ import {
   NavbarGroup,
   NavbarHeading,
   Classes,
-  EditableText
+  EditableText,
+  MenuItem,
+  Menu,
+  Popover,
+  Position,
+  Button,
+  Icon
 } from "@blueprintjs/core";
 import PropTypes from "prop-types";
+import { IconNames } from "@blueprintjs/icons";
 
 const Header = ({ fileName, onFileNameChange }) => {
   return (
@@ -22,6 +29,20 @@ const Header = ({ fileName, onFileNameChange }) => {
           maxLength={255}
           placeholder="Click to name the file"
         />
+        <NavbarDivider />
+        <Popover
+          position={Position.BOTTOM_LEFT}
+          content={
+            <Menu>
+              <MenuItem
+                text={"New File"}
+                icon={<Icon icon={IconNames.DOCUMENT} />}
+              />
+            </Menu>
+          }
+        >
+          <Button text={"File"} />
+        </Popover>
       </NavbarGroup>
     </Navbar>
   );
