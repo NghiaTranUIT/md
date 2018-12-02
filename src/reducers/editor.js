@@ -27,8 +27,8 @@ const editor = (state = defaultState, action) => {
         files: {
           ...state.files,
           [`${id}`]: {
-            name: name || file.name,
-            content: content || file.content
+            name: name === undefined ? file.name : name,
+            content: content === undefined ? file.content : content
           }
         }
       };

@@ -61,6 +61,25 @@ describe("editor reducer", () => {
     );
   });
 
+  it("should handle UPDATE_FILE action with a blank content", () => {
+    const updatedFile = {
+      name: "new name",
+      content: ""
+    };
+
+    const expectedFiles = { ...files, "1": updatedFile };
+
+    const state = { activeFileId: "a", files };
+    const expected_state = {
+      ...state,
+      files: { ...expectedFiles }
+    };
+
+    expect(editor(state, updateFile("1", "new name", ""))).toEqual(
+      expected_state
+    );
+  });
+
   it("should handle UPDATE_FILE action when id is invalid", () => {
     const state = { activeFileId: null, files };
     expect(editor(state, updateFile("non existing id", "new name"))).toEqual({
