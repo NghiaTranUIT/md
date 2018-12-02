@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/index";
-import SimpleMDEEditor from "react-simplemde-editor";
 import * as PropTypes from "prop-types";
+import { TextArea } from "@blueprintjs/core";
 const uuidv1 = require("uuid/v1");
 
 class Editor extends Component {
@@ -15,22 +15,13 @@ class Editor extends Component {
   }
 
   render() {
-    console.log("RENDER");
     const { id, content, onContentChange } = this.props;
-    console.log(id);
-    console.log(content);
     return (
       <div style={{ paddingTop: 50 }}>
-        {content}
-        <SimpleMDEEditor
-          onChange={text => {
-            onContentChange(id, text);
-          }}
+        <TextArea
           value={content}
-          options={{
-            spellChecker: false,
-            autofocus: true
-          }}
+          onChange={e => onContentChange(id, e.target.value)}
+          fill={true}
         />
       </div>
     );
