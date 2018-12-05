@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import "simplemde/dist/simplemde.min.css";
 import MenuBar from "../containers/MenuBar";
-import Editor from "../containers/Editor";
+import EditorContainer from "../containers/EditorContainer";
 import FileTreeContainer from "../containers/FileTreeContainer";
 
 class App extends Component {
@@ -9,7 +8,7 @@ class App extends Component {
     return (
       <>
         <MenuBar />
-        <Editor />
+        <EditorContainer />
         <FileTreeContainer />
       </>
     );

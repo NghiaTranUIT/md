@@ -5,7 +5,7 @@ import * as PropTypes from "prop-types";
 import { TextArea } from "@blueprintjs/core";
 const uuidv1 = require("uuid/v1");
 
-class Editor extends Component {
+class EditorContainer extends Component {
   componentDidMount() {
     const { id, createNewFile } = this.props;
     if (id == null) {
@@ -28,7 +28,7 @@ class Editor extends Component {
   }
 }
 
-Editor.propTypes = {
+EditorContainer.propTypes = {
   id: PropTypes.string,
   content: PropTypes.string,
   onContentChange: PropTypes.func,
@@ -56,4 +56,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Editor);
+)(EditorContainer);
