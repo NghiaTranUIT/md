@@ -5,6 +5,7 @@
   "dependencies": {
     "@blueprintjs/core": "^3.9.0",
     "@blueprintjs/icons": "^3.3.0",
+    "immutable": "^4.0.0-rc.12",
     "localforage": "^1.7.3",
     "lodash": "^4.17.11",
     "lodash-es": "^4.17.11",
@@ -16,6 +17,8 @@
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
     "redux-persist": "^5.10.0",
+    "slate": "^0.44.8",
+    "slate-react": "^0.21.14",
     "uuid": "^3.3.2"
   },
   "scripts": {
