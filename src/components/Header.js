@@ -20,7 +20,7 @@ const Header = ({ fileName, onFileNameChange, onCreateNewFile }) => {
   return (
     <Navbar fixedToTop={true}>
       <NavbarGroup align={Classes.ALIGN_LEFT}>
-        <NavbarHeading>md</NavbarHeading>
+        <NavbarHeading>📝 md</NavbarHeading>
         <NavbarDivider />
         <EditableText
           selectAllOnFocus={true}
