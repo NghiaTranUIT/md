@@ -24,7 +24,7 @@ const Header = ({ fileName, onFileNameChange, onCreateNewFile }) => {
         <NavbarDivider />
         <EditableText
           selectAllOnFocus={true}
-          defaultValue={fileName}
+          value={fileName}
           onChange={onFileNameChange}
           maxLength={255}
           placeholder="Click to name the file"
