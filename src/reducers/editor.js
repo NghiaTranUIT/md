@@ -1,3 +1,5 @@
+import * as _ from "lodash";
+
 export const defaultState = {
   activeFileId: null,
   files: {}
@@ -17,6 +19,7 @@ const editor = (state = defaultState, action) => {
           }
         }
       };
+
     case "UPDATE_FILE":
       const { id, name, content } = action.payload;
       const file = state.files[id];
@@ -37,6 +40,12 @@ const editor = (state = defaultState, action) => {
       return {
         ...state,
         activeFileId: action.payload.id
+      };
+
+    case "DELETE_FILE":
+      return {
+        ...state,
+        files: _.omit(state.files, action.payload.id)
       };
 
     case "WIPE_ALL":

@@ -23,6 +23,13 @@ export const selectFile = id => ({
   }
 });
 
+export const deleteFile = id => ({
+  type: "DELETE_FILE",
+  payload: {
+    id
+  }
+});
+
 export const wipeAll = () => ({
   type: "WIPE_ALL"
 });

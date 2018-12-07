@@ -1,5 +1,11 @@
 import editor, { defaultState } from "./editor";
-import { createNewFile, selectFile, updateFile, wipeAll } from "../actions";
+import {
+  createNewFile,
+  selectFile,
+  updateFile,
+  wipeAll,
+  deleteFile
+} from "../actions";
 
 const files = {
   "1": {
@@ -113,6 +119,21 @@ describe("editor reducer", () => {
     expect(editor(state, selectFile("3"))).toEqual({
       ...state,
       activeFileId: "3"
+    });
+  });
+
+  it("should handle DELETE_FILE action", () => {
+    const state = {
+      activeFileId: undefined,
+      files: files
+    };
+
+    const newFiles = { ...files };
+    delete newFiles["3"];
+
+    expect(editor(state, deleteFile("3"))).toEqual({
+      ...state,
+      files: newFiles
     });
   });
 

@@ -3,7 +3,7 @@ import { Icon, Menu, MenuItem } from "@blueprintjs/core";
 import PropTypes from "prop-types";
 import { IconNames } from "@blueprintjs/icons";
 
-const FileTree = ({ files, activeFileId, selectFile }) => {
+const FileTree = ({ files, activeFileId, selectFile, deleteFile }) => {
   return (
     <Menu>
       {files.map(f => (
@@ -12,7 +12,13 @@ const FileTree = ({ files, activeFileId, selectFile }) => {
           text={f.name}
           active={f.id === activeFileId}
           icon={<Icon icon={IconNames.DOCUMENT} />}
-          onClick={event => selectFile(f.id)}
+          onClick={() => selectFile(f.id)}
+          labelElement={
+            <Icon
+              icon={IconNames.SMALL_CROSS}
+              onClick={() => deleteFile(f.id)}
+            />
+          }
         />
       ))}
     </Menu>
@@ -27,7 +33,8 @@ FileTree.propTypes = {
     })
   ),
   activeFileId: PropTypes.string.isRequired,
-  selectFile: PropTypes.func.isRequired
+  selectFile: PropTypes.func.isRequired,
+  deleteFile: PropTypes.func.isRequired
 };
 
 export default FileTree;

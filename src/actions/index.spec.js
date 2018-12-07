@@ -29,6 +29,14 @@ describe("editor actions", () => {
       }
     });
   });
+  it("deleteFile should create DELETE_FILE action", () => {
+    expect(actions.deleteFile("1")).toEqual({
+      type: "DELETE_FILE",
+      payload: {
+        id: "1"
+      }
+    });
+  });
   it("wipeAll should create WIPE_ALL action", () => {
     expect(actions.wipeAll()).toEqual({
       type: "WIPE_ALL"

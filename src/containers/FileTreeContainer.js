@@ -1,6 +1,6 @@
 import connect from "react-redux/es/connect/connect";
 import FileTree from "../components/FileTree";
-import { selectFile } from "../actions";
+import { deleteFile, selectFile } from "../actions";
 
 const mapStateToProps = state => ({
   files: Object.keys(state.editor.files).map(id => ({
@@ -11,7 +11,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  selectFile: id => dispatch(selectFile(id))
+  selectFile: id => dispatch(selectFile(id)),
+  deleteFile: id => dispatch(deleteFile(id))
 });
 
 export default connect(
