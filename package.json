@@ -19,6 +19,7 @@
     "redux-persist": "^5.10.0",
     "slate": "^0.44.8",
     "slate-react": "^0.21.14",
+    "styled-components": "^4.1.2",
     "uuid": "^3.3.2"
   },
   "scripts": {

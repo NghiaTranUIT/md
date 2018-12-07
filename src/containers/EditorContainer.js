@@ -17,13 +17,15 @@ class EditorContainer extends Component {
   render() {
     const { id, content, onContentChange } = this.props;
     return (
-      <div style={{ paddingTop: 50 }}>
-        <TextArea
-          value={content}
-          onChange={e => onContentChange(id, e.target.value)}
-          fill={true}
-        />
-      </div>
+      <TextArea
+        style={{
+          width: "100%",
+          height: "100%"
+        }}
+        value={content}
+        onChange={e => onContentChange(id, e.target.value)}
+        fill={true}
+      />
     );
   }
 }
